@@ -19,7 +19,7 @@ public class BDchat extends JavaPlugin{
 			Channels.addChannel(channel, type, prefix, format);
 		}
 		
-		getCommand("cc").setExecutor(new CommmandListener(this));
+		getCommand("cc").setExecutor(new CommandListener(this));
 		
 		getServer().getPluginManager().registerEvents(new WorldChangeListener(), this);
 		getServer().getPluginManager().registerEvents(new LoginListener(), this);
