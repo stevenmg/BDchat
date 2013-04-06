@@ -1,0 +1,10 @@
+name: BDchat
+main: org.theglicks.bukkit.BDchat.BDchat
+version: 2.1
+author: StevenMG
+commands:
+    cc:
+        description: Change which chat channel you talk in.
+        usage: /cc
+        permission: BDchat.cc
+        permission-message: You do not have access to this command!
