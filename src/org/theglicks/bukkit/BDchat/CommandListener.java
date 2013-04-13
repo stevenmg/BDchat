@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class CommandListener implements CommandExecutor{
 
-  public CommmandListener(BDchat mainClass) {
+  public CommandListener(BDchat mainClass) {
 		// TODO Auto-generated constructor stub
 	}
 
