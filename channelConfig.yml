@@ -1,0 +1,32 @@
+channels:
+    g:
+        type: global
+        prefix: §0[§6G§0]
+        format: §6
+        description: Anyone can see messages sent in this channel.
+    s:
+        type: global
+        prefix: §0[§4S§0]
+        format: §c
+        description: Staff can talk here without others knowing.
+    h:
+        type: global
+        prefix: §0[§3H§0]
+        format: §3
+        description: Use this channel to get people's attention when you need help.
+    l:
+        type: local_range
+        prefix: §0[§7L§0]
+        format: §7
+        description: Only players within 100 blocks of the sender can see messages.
+        range: 100
+    w:
+        type: local_world
+        prefix: §0[§1W§0]
+        format: §2
+        description: Only players in the same world can see messages.
+    f:
+        type: faction_only
+        prefix: §0[§5F§0]
+        format: §5
+        description: Only players in the same faction can see messages.

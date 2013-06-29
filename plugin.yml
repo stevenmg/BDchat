@@ -1,0 +1,12 @@
+name: BDchat
+main: org.theglicks.bukkit.BDchat.BDchat
+version: 3.0
+author: StevenMG and Addicted_24_7
+commands:
+    cc:
+        description: Change which chat channel you talk in
+        usage: /cc (channel)
+        aliases: ch
+    BDchat:
+        description: Main command for BDchat
+        usage: /BDchat
