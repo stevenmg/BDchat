@@ -1,7 +1,6 @@
 package org.theglicks.bukkit.BDchat.commandListeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,17 +22,12 @@ public class CmdBDchatListener implements CommandExecutor {
 		if (sender instanceof Player) {
 			if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
 				for (String currentLine : BDchat.helpMessage) {
-					BDplayer.getPlayer().sendMessage(
-							ChatColor.translateAlternateColorCodes('&',
-									currentLine));
+					BDplayer.getPlayer().sendMessage(currentLine.replace(".&", "§").replace("&", "§"));
 				}
 			} else if (args[0].equalsIgnoreCase("list")) {
-				BDplayer.getPlayer().sendMessage(
-						"§7----------§c[§aBDchat§c]§7----------");
+				BDplayer.getPlayer().sendMessage("§7----------§c[§aBDchat§c]§7----------");
 				for (Channel currentChannel1 : BDchat.channelList.values()) {
-					BDplayer.getPlayer().sendMessage(
-							"§2" + currentChannel1.getName() + ": §a"
-									+ currentChannel1.getDescription());
+					BDplayer.getPlayer().sendMessage("§2" + currentChannel1.getName() + ": §a" + currentChannel1.getDescription());
 				}
 			}
 		} else if (sender instanceof ConsoleCommandSender) {

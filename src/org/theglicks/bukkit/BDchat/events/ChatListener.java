@@ -53,7 +53,9 @@ public class ChatListener implements Listener {
 				playerChat.getRecipients().remove(currentPlayer.getPlayer());
 			}
 		}
-		playerChat.setFormat(playerChat.getFormat().replace("[BDchat]", playerChannel.getPrefix() + ChatColor.WHITE));
-		playerChat.setMessage(playerChannel.getFormat() + playerChat.getMessage());
+		playerChat.setFormat(playerChat.getFormat().replace("[BDchat]", ChatColor.translateAlternateColorCodes(
+				'&', playerChannel.getPrefix().replace(".", "")) + ChatColor.WHITE));
+		playerChat.setMessage(ChatColor.translateAlternateColorCodes('&', playerChannel.getFormat().replace(".", ""))
+				+ playerChat.getMessage());
 	}
 }

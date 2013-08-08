@@ -37,16 +37,14 @@ public class BDchat extends JavaPlugin {
 		getCommand("cc").setExecutor(new CmdccListener(this));
 		getCommand("BDchat").setExecutor(new CmdBDchatListener(this));
 
-		getServer().getPluginManager()
-				.registerEvents(new LoginListener(), this);
+		getServer().getPluginManager().registerEvents(new LoginListener(), this);
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
-		getServer().getPluginManager().registerEvents(
-				new PlayerLeaveListener(), this);
+		getServer().getPluginManager().registerEvents(new PlayerLeaveListener(), this);
 
 		helpMessage = (List<String>) mainConfig.getConfig().getList("helpMessage");
 
-		for (String channel : channelConfig.getConfig()
-				.getConfigurationSection("channels").getKeys(false)) {
+		for (String channel : channelConfig.getConfig().getConfigurationSection("channels")
+				.getKeys(false)) {
 			Channel BDchannel = new Channel(channel);
 			channelList.put(channel, BDchannel);
 		}

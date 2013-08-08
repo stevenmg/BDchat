@@ -1,9 +1,9 @@
 defaultChannel: g
 
 helpMessage: 
-    - §7----------§c[§aBDchat§c]§7----------
-    - §cAuthor - §7StevenMG and Addicted_24_7
-    - §cVersion - §73.0
-    - §7Look us up on BukkitDev! dev.bukkit.org/server-mods/bdchat/
-    - §7Change channels using /cc (Channel Name)
-    - §7For a list of channels do /BDchat list
+    - .&7----------&c[&aBDchat&c]&7----------
+    - .&cAuthor - &7StevenMG and Addicted_24_7
+    - .&cVersion - &73.1
+    - .&7Look us up on BukkitDev! dev.bukkit.org/server-mods/bdchat/
+    - .&7Change channels using /cc (Channel Name)
+    - .&7For a list of channels do /BDchat list
