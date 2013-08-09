@@ -22,7 +22,6 @@ public class BDchat extends JavaPlugin {
 	public static HashMap<String, BDchatPlayer> BDchatPlayerList = new HashMap<String, BDchatPlayer>();
 	public static HashMap<String, Channel> channelList = new HashMap<String, Channel>();
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onEnable() {
 		thisPlugin = (JavaPlugin) Bukkit.getPluginManager().getPlugin("BDchat");
@@ -40,11 +39,12 @@ public class BDchat extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new LoginListener(), this);
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
 		getServer().getPluginManager().registerEvents(new PlayerLeaveListener(), this);
+		
+		for (String line: mainConfig.getConfig().getConfigurationSection("helpMessage").getKeys(false)){
+			helpMessage.add(mainConfig.getConfig().getString("helpMessage." + line));
+		}
 
-		helpMessage = (List<String>) mainConfig.getConfig().getList("helpMessage");
-
-		for (String channel : channelConfig.getConfig().getConfigurationSection("channels")
-				.getKeys(false)) {
+		for (String channel : channelConfig.getConfig().getConfigurationSection("channels").getKeys(false)) {
 			Channel BDchannel = new Channel(channel);
 			channelList.put(channel, BDchannel);
 		}

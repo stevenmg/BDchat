@@ -10,7 +10,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.theglicks.bukkit.BDchat.BDchat;
 import org.theglicks.bukkit.BDchat.BDchatPlayer;
 import org.theglicks.bukkit.BDchat.Channel;
-import org.theglicks.bukkit.BDchat.Permissions;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
 
@@ -27,7 +26,7 @@ public class ChatListener implements Listener {
 			Location senderLocation = playerChat.getPlayer().getLocation();
 			for (BDchatPlayer currentBDplayer : BDchat.BDchatPlayerList.values()){
 				if(!currentBDplayer.getWorld().equals(BDplayer.getWorld())){
-					if(!(currentBDplayer.getPlayer().getLocation().distance(senderLocation) >= playerChannel.getRange())){
+					if(currentBDplayer.getPlayer().getLocation().distanceSquared(senderLocation) <= playerChannel.getRange()){
 						playerChat.getRecipients().remove(currentBDplayer.getPlayer());
 					}
 				}
@@ -49,13 +48,12 @@ public class ChatListener implements Listener {
 		}		
 		
 		for(BDchatPlayer currentPlayer: BDchat.BDchatPlayerList.values()){
-			if(!Permissions.canView(currentPlayer.getPlayer(), playerChannel.getName())){
+			if(!currentPlayer.getPlayer().hasPermission("BDchat." + playerChannel.getName() + ".View")){
 				playerChat.getRecipients().remove(currentPlayer.getPlayer());
 			}
 		}
-		playerChat.setFormat(playerChat.getFormat().replace("[BDchat]", ChatColor.translateAlternateColorCodes(
-				'&', playerChannel.getPrefix().replace(".", "")) + ChatColor.WHITE));
-		playerChat.setMessage(ChatColor.translateAlternateColorCodes('&', playerChannel.getFormat().replace(".", ""))
-				+ playerChat.getMessage());
+		
+		playerChat.setFormat(playerChat.getFormat().replace("[BDchat]", playerChannel.getPrefix().replace(".&", "§").replace("&", "§") + ChatColor.WHITE));
+		playerChat.setMessage(playerChannel.getFormat().replace(".&", "§").replace("&", "§") + playerChat.getMessage());
 	}
 }

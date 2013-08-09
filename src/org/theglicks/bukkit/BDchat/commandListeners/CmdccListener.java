@@ -11,7 +11,6 @@ import org.theglicks.bukkit.BDchat.BDchat;
 import org.theglicks.bukkit.BDchat.BDchatPlayer;
 import org.theglicks.bukkit.BDchat.Channel;
 import org.theglicks.bukkit.BDchat.Messenger;
-import org.theglicks.bukkit.BDchat.Permissions;
 
 public class CmdccListener implements CommandExecutor {
 	public CmdccListener(BDchat bDchat) {
@@ -22,12 +21,11 @@ public class CmdccListener implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		if (sender instanceof Player) {
-			BDchatPlayer BDplayer = BDchat.BDchatPlayerList.get(sender
-					.getName());
+			BDchatPlayer BDplayer = BDchat.BDchatPlayerList.get(sender.getName());
 			if (args.length < 1) {
 				Messenger.ccError(BDplayer.getPlayer());
 			} else {
-				if (Permissions.canTalk(BDplayer.getPlayer(), args[0])) {
+				if (sender.hasPermission("BDchat." + BDchat.channelList.get(args[0]).getName() + ".Talk")) {
 					if (args.length == 1) {
 						BDplayer.setChannel(args[0], true);
 					} else if (args.length > 1) {
@@ -54,8 +52,7 @@ public class CmdccListener implements CommandExecutor {
 			if (args.length > 1) {
 				Channel BDchannel = BDchat.channelList.get(args[0]);
 				if (BDchannel.getType().equals("global")) {
-					String message = BDchannel.getPrefix() + " §8§lCONSOLE: "
-							+ BDchannel.getFormat();
+					String message = BDchannel.getPrefix() + " §8§lCONSOLE: " + BDchannel.getFormat();
 					int counter = 0;
 					for (String arg : args) {
 						counter++;
@@ -63,16 +60,13 @@ public class CmdccListener implements CommandExecutor {
 							message = message + arg + ' ';
 						}
 					}
-					for (BDchatPlayer BDplayer : BDchat.BDchatPlayerList
-							.values()) {
-						if (Permissions.canView(BDplayer.getPlayer(),
-								BDchannel.getName())) {
+					for (BDchatPlayer BDplayer : BDchat.BDchatPlayerList.values()) {
+						if (BDplayer.getPlayer().hasPermission("BDchat." + BDchannel.getName() + ".View")) {
 							BDplayer.getPlayer().sendMessage(message);
 						}
 					}
 				} else {
-					Bukkit.getLogger().info(
-							"You cannot talk in that type of channel");
+					Bukkit.getLogger().info("You cannot talk in that type of channel");
 				}
 			}
 		}
