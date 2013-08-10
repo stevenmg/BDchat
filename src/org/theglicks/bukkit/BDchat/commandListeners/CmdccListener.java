@@ -44,15 +44,14 @@ public class CmdccListener implements CommandExecutor {
 						}
 					}
 				} else {
-					sender.sendMessage(ChatColor.RED
-							+ "You do not have permssion to talk in that channel!");
+					sender.sendMessage(ChatColor.RED + "You do not have permssion to talk in that channel!");
 				}
 			}
 		} else if (sender instanceof ConsoleCommandSender) {
 			if (args.length > 1) {
 				Channel BDchannel = BDchat.channelList.get(args[0]);
 				if (BDchannel.getType().equals("global")) {
-					String message = BDchannel.getPrefix() + " §8§lCONSOLE: " + BDchannel.getFormat();
+					String message = BDchannel.getPrefix().replace(".&", "§").replace("&", "§") + " §8§lCONSOLE: " + BDchannel.getFormat().replace(".&", "§").replace("&", "§");
 					int counter = 0;
 					for (String arg : args) {
 						counter++;
