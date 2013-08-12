@@ -26,7 +26,9 @@ public class ChatListener implements Listener {
 			Location senderLocation = playerChat.getPlayer().getLocation();
 			for (BDchatPlayer currentBDplayer : BDchat.BDchatPlayerList.values()){
 				if(!currentBDplayer.getWorld().equals(BDplayer.getWorld())){
-					if(currentBDplayer.getPlayer().getLocation().distanceSquared(senderLocation) <= playerChannel.getRange()){
+					playerChat.getRecipients().remove(currentBDplayer.getPlayer());
+				} else {
+					if(currentBDplayer.getPlayer().getLocation().distance(senderLocation) > playerChannel.getRange()){
 						playerChat.getRecipients().remove(currentBDplayer.getPlayer());
 					}
 				}
