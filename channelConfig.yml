@@ -19,7 +19,7 @@ channels:
         prefix: .&0[&7L&0]
         format: .&7
         description: Only players within 100 blocks of the sender can see messages.
-        range: 100
+        range: 75
     w:
         type: local_world
         prefix: .&0[&1W&0]

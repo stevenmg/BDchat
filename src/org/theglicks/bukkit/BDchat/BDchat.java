@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.theglicks.bukkit.BDchat.commandListeners.CmdBDchatListener;
 import org.theglicks.bukkit.BDchat.commandListeners.CmdccListener;
@@ -47,6 +48,12 @@ public class BDchat extends JavaPlugin {
 		for (String channel : channelConfig.getConfig().getConfigurationSection("channels").getKeys(false)) {
 			Channel BDchannel = new Channel(channel);
 			channelList.put(channel, BDchannel);
+		}
+		
+		for (Player p: Bukkit.getOnlinePlayers()){
+			BDchatPlayer BDplayer = new BDchatPlayer(p.getName());
+			BDplayer.setChannel(mainConfig.getConfig().getString("defaultChannel"), true);
+			BDchatPlayerList.put(p.getName(), BDplayer);
 		}
 	}
 
